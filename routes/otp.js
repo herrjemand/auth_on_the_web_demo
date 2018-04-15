@@ -5,7 +5,7 @@ const qrcode    = require('qrcode');
 const router    = express.Router();
 const database  = require('./db');
 
-router.post('/registerAuthenticator', (request, response) => {
+router.get('/registerAuthenticator', (request, response) => {
     if(!request.session.loggedIn) {
         response.json({
             'status': 'failed',
@@ -19,7 +19,7 @@ router.post('/registerAuthenticator', (request, response) => {
 
     request.session.verifyOTPSecret = secret.hex
 
-    QRCode.toDataURL(secret.otpauth_url, function(error, data_url) {
+    qrcode.toDataURL(secret.otpauth_url, function(error, data_url) {
         if(error) {
             response.json({
                 'status': 'failed',
