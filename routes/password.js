@@ -27,8 +27,9 @@ router.post('/register', (request, response) => {
     }
 
 
+    let passwordHash   = utils.scrypt.hash(password);
     database[username] = {
-        'password': password,
+        'hash': passwordHash,
         'name': name,
         'id': utils.randomBase64URLBuffer()
     }
@@ -54,7 +55,7 @@ router.post('/login', (request, response) => {
     let username = request.body.username;
     let password = request.body.password;
 
-    if(!database[username] || database[username].password !== password) {
+    if(!database[username] || !utils.scrypt.verify(password, database[username].hash)) {
         response.json({
             'status': 'failed',
             'message': `Wrong username or password!`

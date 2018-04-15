@@ -1,7 +1,7 @@
 const crypto    = require('crypto');
 const base64url = require('base64url');
 const cbor      = require('cbor');
-
+const scryptlib = require('scrypt');
 /**
  * U2F Presence constant
  */
@@ -286,10 +286,37 @@ let verifyAuthenticatorAssertionResponse = (webAuthnResponse, authenticators) =>
     return response
 }
 
+let scrypt = {
+    /**
+     * Takes password string and return hex encoded scrypt salted hash
+     * @param  {String|Buffer} password
+     * @return {String}                 - hex encoded hash buffer
+     */
+    'hash': (password) => {
+        let scryptParameters = scryptlib.paramsSync(0.1);
+        let kdfResult        = scryptlib.kdfSync(password, scryptParameters);
+
+        return kdfResult.toString('hex')
+    },
+
+    /**
+     * Takes string password, and hex encoded hash and verifies it validity
+     * @param  {String} password
+     * @param  {String} hash
+     * @return {Boolean}
+     */
+    'verify': (password, hash) => {
+        let hashBuff = Buffer.from(hash, 'hex')
+        let scryptParameters = scryptlib.paramsSync(0.1);
+        return scryptlib.verifyKdfSync(hashBuff, password)
+    }
+}
+
 module.exports = {
     randomBase64URLBuffer,
     generateServerMakeCredRequest,
     generateServerGetAssertion,
     verifyAuthenticatorAttestationResponse,
-    verifyAuthenticatorAssertionResponse
+    verifyAuthenticatorAssertionResponse,
+    scrypt
 }
