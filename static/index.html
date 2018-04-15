@@ -3,6 +3,7 @@
 <head>
     <title>Authentication on the web demo</title>
     <link rel="stylesheet" href="css/milligram.min.css">
+    <link rel="stylesheet" href="css/dialog-polyfill.css">
     <style>
         html, body, .container, .row {
             height: 100%;
@@ -27,6 +28,10 @@
         }
     </style>
 </head>
+
+<dialog>
+    
+</dialog>
 <body>
     <div class="container">
         <div class="row row-center">
@@ -85,6 +90,7 @@
     <script src="js/view.js"></script>
     <script src="js/password.auth.js"></script>
     <script src="js/webauthn.auth.js"></script>
+    <script src="js/dialog-polyfill.js"></script>
     <script>
         $(document).ready(() => {
             checkIfLoggedIn()
