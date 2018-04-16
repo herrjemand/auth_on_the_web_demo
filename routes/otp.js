@@ -19,7 +19,9 @@ router.get('/registerAuthenticator', (request, response) => {
 
     request.session.verifyOTPSecret = secret.hex
 
-    qrcode.toDataURL(secret.otpauth_url, function(error, data_url) {
+    let otpauth_url = speakeasy.otpauthURL({ secret: secret.ascii, label: `DEMOAPP (${request.session.username})`});
+
+    qrcode.toDataURL(otpauth_url, function(error, data_url) {
         if(error) {
             response.json({
                 'status': 'failed',
