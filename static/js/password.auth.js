@@ -55,9 +55,16 @@ $('#login').submit(function(event) {
     .then((response) => response.json())
     .then((response) => {
         if(response.status === 'ok') {
-            loadMainContainer()   
+            loadMainContainer()
         } else {
-            alert(`Server responed with error. The message is: ${response.message}`);
+            if(response.awaitsOTP) {
+                window.awaitsOTP = true;
+                $('#qrcodeimage').html('');
+                otpDialog.showModal()  
+            } else {
+                alert(`Server responed with error. The message is: ${response.message}`);
+            }
+
         }
     })
 })

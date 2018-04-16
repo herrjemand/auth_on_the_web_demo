@@ -306,8 +306,9 @@ let scrypt = {
      * @return {Boolean}
      */
     'verify': (password, hash) => {
-        let hashBuff = Buffer.from(hash, 'hex')
+        let hashBuff         = Buffer.from(hash, 'hex')
         let scryptParameters = scryptlib.paramsSync(0.1);
+
         return scryptlib.verifyKdfSync(hashBuff, password)
     }
 }

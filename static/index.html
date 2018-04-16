@@ -29,9 +29,18 @@
     </style>
 </head>
 
-<dialog>
-    
+<dialog id="otpDialog">
+    <h3>Register authenticator</h3>
+    <span id="qrcodeimage"></span>
+    <form id="verifyotp">
+      <fieldset>
+        <label for="code">code</label>
+        <input type="text" name="code">
+        <input class="button-primary" type="submit" value="Register">
+      </fieldset>
+    </form>
 </dialog>
+
 <body>
     <div class="container">
         <div class="row row-center">
@@ -73,24 +82,25 @@
             </div>
 
             <div class="column" id="mainContainer">
-
                 <div class="secretcontainer">
                     <h3>Hey <span id="name"></span>!</h3>
                     <div id="theSecret"></div>
                     <button id="logoutButton">Logout</button>
+                    <button id="addOTP">Add OTP</button>
                 </div>
             </div>
 
         </div>
     </div>
 
+    <script src="js/dialog-polyfill.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/base64url-arraybuffer.js"></script>
     <script src="js/view.js"></script>
     <script src="js/password.auth.js"></script>
     <script src="js/webauthn.auth.js"></script>
-    <script src="js/dialog-polyfill.js"></script>
+    <script src="js/otp.auth.js"></script>
     <script>
         $(document).ready(() => {
             checkIfLoggedIn()

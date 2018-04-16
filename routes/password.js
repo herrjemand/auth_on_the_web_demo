@@ -63,13 +63,20 @@ router.post('/login', (request, response) => {
 
         return
     }
+    request.session.username  = username
 
-    request.session.loggedIn = true;
-    request.session.username = username
-
-    response.json({
-        'status': 'ok'
-    })
+    if(database[username].otpsecret) {
+        request.session.awaitsOTP = true;
+        response.json({
+            'status': 'failed',
+            'awaitsOTP': true
+        })
+    } else {
+        request.session.loggedIn = true;
+        response.json({
+            'status': 'ok'
+        })
+    }
 })
 
 module.exports = router;
