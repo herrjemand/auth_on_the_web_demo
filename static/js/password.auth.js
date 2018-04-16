@@ -24,6 +24,9 @@ $('#register').submit(function(event) {
     .then((response) => response.json())
     .then((response) => {
         if(response.status === 'ok') {
+            this.username.value = '';
+            this.password.value = '';
+            this.name.value     = '';
             loadMainContainer()
         } else {
             alert(`Server responed with error. The message is: ${response.message}`);
@@ -56,11 +59,16 @@ $('#login').submit(function(event) {
     .then((response) => {
         if(response.status === 'ok') {
             loadMainContainer()
+            this.username.value = '';
+            this.password.value = '';
         } else {
             if(response.awaitsOTP) {
                 window.awaitsOTP = true;
                 $('#qrcodeimage').html('');
-                otpDialog.showModal()  
+                otpDialog.showModal()
+
+                this.username.value = '';
+                this.password.value = '';
             } else {
                 alert(`Server responed with error. The message is: ${response.message}`);
             }
