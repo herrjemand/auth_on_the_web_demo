@@ -10,6 +10,7 @@ const config        = require('./config.json');
 const defaultroutes = require('./routes/default');
 const passwordauth  = require('./routes/password');
 const webuathnauth  = require('./routes/webauthn.js');
+const u2fauth       = require('./routes/u2f.js');
 const otpauth       = require('./routes/otp.js');
 
 const app           = express();
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use('/', defaultroutes)
 app.use('/password', passwordauth)
 app.use('/webauthn', webuathnauth)
+app.use('/u2f', u2fauth)
 app.use('/otp', otpauth)
 
 const port = config.port || 3000;

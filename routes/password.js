@@ -31,6 +31,7 @@ router.post('/register', (request, response) => {
     database[username] = {
         'hash': passwordHash,
         'name': name,
+        'u2fauthenticators': [],
         'id': utils.randomBase64URLBuffer()
     }
 
@@ -70,6 +71,12 @@ router.post('/login', (request, response) => {
         response.json({
             'status': 'failed',
             'awaitsOTP': true
+        })
+    } else if(database[username].u2fauthenticators.length) {
+        request.session.awaitsU2F = true;
+        response.json({
+            'status': 'failed',
+            'awaitsU2F': true
         })
     } else {
         request.session.loggedIn = true;

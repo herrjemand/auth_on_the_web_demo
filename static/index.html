@@ -41,6 +41,10 @@
     </form>
 </dialog>
 
+<dialog id="u2fDialog">
+    <h3>Waiting for the authenticator</h3>
+</dialog>
+
 <body>
     <div class="container">
         <div class="row row-center">
@@ -87,6 +91,7 @@
                     <div id="theSecret"></div>
                     <button id="logoutButton">Logout</button>
                     <button id="addOTP">Add OTP</button>
+                    <button id="addU2F">Add U2F</button>
                 </div>
             </div>
 
@@ -101,6 +106,7 @@
     <script src="js/password.auth.js"></script>
     <script src="js/webauthn.auth.js"></script>
     <script src="js/otp.auth.js"></script>
+    <script src="js/u2f.auth.js"></script>
     <script>
         $(document).ready(() => {
             checkIfLoggedIn()

@@ -69,6 +69,8 @@ $('#login').submit(function(event) {
 
                 this.username.value = '';
                 this.password.value = '';
+            } else if(response.awaitsU2F) {
+                u2fLogin()
             } else {
                 alert(`Server responed with error. The message is: ${response.message}`);
             }
