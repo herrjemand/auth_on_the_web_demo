@@ -1,6 +1,6 @@
 {
   "name": "auth_on_the_web_demo",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -13,6 +13,7 @@
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.15.4",
+    "qrcode": "^1.2.0",
     "scrypt": "^6.0.3",
     "speakeasy": "^2.0.0"
   },
