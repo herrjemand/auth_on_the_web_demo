@@ -1,25 +1,31 @@
 {
-  "name": "webauthn-tutorial",
-  "version": "0.0.1",
+  "name": "auth_on_the_web_demo",
+  "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "base64url": "^2.0.0",
     "body-parser": "^1.15.2",
     "cbor": "^3.0.3",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "qrcode": "^1.2.0",
+    "scrypt": "^6.0.3",
+    "speakeasy": "^2.0.0"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fido-alliance/"
+    "url": "git+https://github.com/herrjemand/auth_on_the_web_demo"
   },
-  "private": true,
-  "author": "Yuriy Ackermann <yuriy@fidoalliance.org> (https://jeman.de/)",
+  "author": "Yuriy Ackermann <ackermann.yuriy@gmail.com>",
   "bugs": {
-    "url": "https://github.com/fido-alliance//issues",
-    "email": "yuriy@fidoalliance.org"
+    "url": "https://github.com/herrjemand/auth_on_the_web_demo/issues",
+    "email": "ackermann.yuriy@gmail.com"
   },
-  "homepage": "https://github.com/fido-alliance/#readme"
+  "homepage": "https://github.com/herrjemand/auth_on_the_web_demo#readme"
 }
